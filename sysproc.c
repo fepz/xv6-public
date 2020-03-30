@@ -89,3 +89,10 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+// return the answer to life, meaning and everything else
+int
+sys_answer(void)
+{
+    return 42;
+}
