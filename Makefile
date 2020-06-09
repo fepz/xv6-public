@@ -191,6 +191,8 @@ UPROGS=\
 	_answer\
 	_pids\
 	_uthread\
+	_zero\
+	_pgcnt\
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)

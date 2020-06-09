@@ -23,6 +23,7 @@ thread_p  current_thread;
 thread_p  next_thread;
 thread_p  main_thread;
 int p = 0;
+int numexecs = 0;
 
 /* This function is defined in uthread_switch.S */
 extern void thread_switch(void);
@@ -102,7 +103,7 @@ mythread(void)
 {
   int i;
   printf(1, "my thread running\n");
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < numexecs; i++) {
     printf(1, "Thread 0x%x: %d\n", (int) current_thread, i);
     thread_yield();
   }
@@ -110,14 +111,24 @@ mythread(void)
   thread_exit();
 }
 
+
 int 
 main(int argc, char *argv[]) 
 {
+  if (argc != 3) {
+      printf(2, "%s numthreads numexecs.\n", argv[0]);
+      exit();
+  }
+
+  int numthreads = atoi(argv[1]);
+  numexecs = atoi(argv[2]);
+  
   thread_init();
-  thread_create(mythread);
-  thread_create(mythread);
-  thread_create(mythread);
-  thread_create(mythread);
+
+  int i;
+  for (i = 0; i < numthreads; i++) {
+    thread_create(mythread);
+  }
   thread_schedule();
   printf(1, "all threads ended.\n");
   exit();

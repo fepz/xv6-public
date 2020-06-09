@@ -9,7 +9,7 @@ thread_switch:
     # guarda el contexto del hilo actual en la pila: la instruccion
     # pushal: guarda EAX,EBX,ECX,EDX,ESP,EBP,ESI,EDI en la pila
     # (indicada por el registro ESP).
-    pushal
+    pusha
 
     # current_thread->sp = esp
     movl current_thread, %eax
@@ -26,7 +26,7 @@ thread_switch:
     movl $0x0, next_thread
 
     # restaura el contexto del nuevo thread
-    popal
+    popa
     
     # pop return address from stack
     ret
