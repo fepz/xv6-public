@@ -102,12 +102,12 @@ static void
 mythread(void)
 {
   int i;
-  printf(1, "my thread running\n");
+  printf(1, "Thread 0x%x started!\n", (int) current_thread);
   for (i = 0; i < numexecs; i++) {
     printf(1, "Thread 0x%x: %d\n", (int) current_thread, i);
     thread_yield();
   }
-  printf(1, "my thread: exit\n");
+  printf(1, "Thread 0x%x ended!\n", (int) current_thread);
   thread_exit();
 }
 
