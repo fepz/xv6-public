@@ -106,6 +106,7 @@ extern int sys_uptime(void);
 extern int sys_answer(void);
 extern int sys_getppid(void);
 extern int sys_pgcnt(void);
+extern int sys_pscnt(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -132,6 +133,7 @@ static int (*syscalls[])(void) = {
 [SYS_answer]  sys_answer,
 [SYS_getppid] sys_getppid,
 [SYS_pgcnt]   sys_pgcnt,
+[SYS_pscnt]   sys_pscnt,
 };
 
 #if PRINTSYSCALLS == 1
@@ -160,6 +162,7 @@ static char* syscalls_names[] = {
 [SYS_answer]  "sys_answer",
 [SYS_getppid] "sys_getppid",
 [SYS_pgcnt]   "sys_pgcnt",
+[SYS_pscnt]   "sys_pscnt",
 };
 #endif
 

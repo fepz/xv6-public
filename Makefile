@@ -193,6 +193,7 @@ UPROGS=\
 	_uthread\
 	_zero\
 	_pgcnt\
+	_pscnt\
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)

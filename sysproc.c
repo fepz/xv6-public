@@ -132,3 +132,8 @@ sys_pgcnt(void)
     return cnt;
 }
 
+int
+sys_pscnt(void)
+{
+    return pscnt();
+}
