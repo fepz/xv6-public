@@ -7,6 +7,8 @@
 #include "mmu.h"
 #include "proc.h"
 
+int sctrace = 0;
+
 int
 sys_fork(void)
 {
@@ -101,6 +103,16 @@ int
 sys_answer(void)
 {
     return 42;
+}
+
+int
+sys_sctrace(void)
+{
+    int n;  
+    if(argint(0, &n) < 0)
+        return -1;
+    sctrace = n;
+    return 0;
 }
 
 int 

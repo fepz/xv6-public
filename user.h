@@ -28,6 +28,7 @@ int getppid(void);
 int pgcnt(void);
 int pscnt(void);
 int rblk(int device, int nblock, char* buf);
+int sctrace(int toggle);
 
 // ulib.c
 int stat(const char*, struct stat*);

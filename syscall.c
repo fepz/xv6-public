@@ -104,6 +104,7 @@ extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
 extern int sys_answer(void);
+extern int sys_sctrace(void);
 extern int sys_getppid(void);
 extern int sys_pgcnt(void);
 extern int sys_pscnt(void);
@@ -136,9 +137,10 @@ static int (*syscalls[])(void) = {
 [SYS_pgcnt]   sys_pgcnt,
 [SYS_pscnt]   sys_pscnt,
 [SYS_rblk]    sys_rblk,
+[SYS_sctrace] sys_sctrace,
 };
 
-#if PRINTSYSCALLS == 1
+//#if PRINTSYSCALLS == 1
 static char* syscalls_names[] = {
 [SYS_fork]    "sys_fork",
 [SYS_exit]    "sys_exit",
@@ -166,8 +168,11 @@ static char* syscalls_names[] = {
 [SYS_pgcnt]   "sys_pgcnt",
 [SYS_pscnt]   "sys_pscnt",
 [SYS_rblk]    "sys_rblk",
+[SYS_sctrace] "sys_sctrace",
 };
-#endif
+//#endif
+
+extern int sctrace;
 
 void
 syscall(void)
@@ -178,9 +183,11 @@ syscall(void)
   num = curproc->tf->eax;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
     curproc->tf->eax = syscalls[num]();
-#if PRINTSYSCALLS == 1
-    cprintf("[%d] %s: %d\n", num, syscalls_names[num], curproc->tf->eax);
-#endif
+//#if PRINTSYSCALLS == 1
+    if (sctrace == 1) {
+        cprintf("[%d] %s: %d\n", num, syscalls_names[num], curproc->tf->eax);
+    }
+//#endif
   } else {
     cprintf("%d %s: unknown sys call %d\n",
             curproc->pid, curproc->name, num);

@@ -189,6 +189,7 @@ UPROGS=\
 	_wc\
 	_zombie\
 	_answer\
+	_trace\
 	_pids\
 	_uthread\
 	_zero\
