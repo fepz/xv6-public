@@ -15,6 +15,7 @@
 #include "sleeplock.h"
 #include "file.h"
 #include "fcntl.h"
+#include "buf.h"
 
 // Fetch the nth word-sized system call argument as a file descriptor
 // and return both the descriptor and the corresponding struct file.
@@ -441,4 +442,25 @@ sys_pipe(void)
   fd[0] = fd0;
   fd[1] = fd1;
   return 0;
+}
+
+int 
+sys_rblk(void)
+{
+  char *b;
+  int d;
+  int n;
+  struct buf *bp;
+
+  argint(0, &d);
+  argint(1, &n);
+  argptr(2, &b, BSIZE);
+
+  bp = bread(d, n);
+
+  memmove(b, bp->data, BSIZE);
+
+  brelse(bp);
+
+  return 1;
 }

@@ -27,6 +27,7 @@ int answer(void);
 int getppid(void);
 int pgcnt(void);
 int pscnt(void);
+int rblk(int device, int nblock, char* buf);
 
 // ulib.c
 int stat(const char*, struct stat*);

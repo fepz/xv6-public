@@ -24,3 +24,4 @@
 #define SYS_getppid 23
 #define SYS_pgcnt  24
 #define SYS_pscnt   25
+#define SYS_rblk    26

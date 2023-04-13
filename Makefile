@@ -194,6 +194,7 @@ UPROGS=\
 	_zero\
 	_pgcnt\
 	_pscnt\
+	_rblk\
 	_forkbomb\
 
 fs.img: mkfs README $(UPROGS)
