@@ -27,8 +27,7 @@ thread_p  main_thread;
 /* This function is defined in uthread_switch.S */
 extern void thread_switch(void);
 
-void 
-thread_init(void)
+void thread_init(void)
 {
   // main() is thread 0, which will make the first invocation to
   // thread_schedule().  it needs a stack so that the first thread_switch() can
@@ -40,8 +39,7 @@ thread_init(void)
   main_thread = current_thread;
 }
 
-void 
-thread_schedule(void)
+void thread_schedule(void)
 {
   thread_p t;
 
@@ -68,8 +66,7 @@ thread_schedule(void)
     next_thread = 0;
 }
 
-void 
-thread_create(void (*func)())
+void thread_create(void (*func)())
 {
   thread_p t;
 
