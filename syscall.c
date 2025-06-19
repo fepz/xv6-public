@@ -185,7 +185,7 @@ syscall(void)
     curproc->tf->eax = syscalls[num]();
 //#if PRINTSYSCALLS == 1
     if (sctrace == 1) {
-        cprintf("[%d] %s: %d\n", num, syscalls_names[num], curproc->tf->eax);
+        cprintf("[%d] [%d] %s: %d\n", curproc->pid, num, syscalls_names[num], curproc->tf->eax);
     }
 //#endif
   } else {
